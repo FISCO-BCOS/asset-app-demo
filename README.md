@@ -8,6 +8,6 @@ An asset transfer demo of FISCO BCOS. This demo is built on [FISCO-BCOS/Java-SDK
 
 ## Steps
 
-Before using this demo, please ensure your blockchain network is running, check [build your first blockchain](https://fisco-bcos-doc.readthedocs.io/zh_CN/latest/docs/quick_start/solidity_application.html).
+Before using this demo, please ensure your blockchain network is running, check [build your first blockchain](https://fisco-bcos-doc.readthedocs.io/zh_CN/latest/docs/quick_start/air_installation.html).
 
 Please check [this](https://fisco-bcos-doc.readthedocs.io/zh_CN/latest/docs/quick_start/solidity_application.html), to see detail build steps.
