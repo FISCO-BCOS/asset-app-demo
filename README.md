@@ -1,6 +1,6 @@
 # asset-app-demo
 
-An asset transfer demo of FISCO BCOS. This demo is built on [FISCO-BCOS/Java-SDK](https://github.com/FISCO-BCOS/java-sdk), which is only supported on **FISCO-BCOS v3.0.0-rc2**.
+An asset transfer demo of FISCO BCOS. This demo is built on [FISCO-BCOS/Java-SDK](https://github.com/FISCO-BCOS/java-sdk), which is only supported on **FISCO-BCOS v3.0.0-rc2+**.
 
 **WARN:** This demo is only supported on **WASM/Liquid** execution dev env. If you need a demo supported **EVM/Solidity**, please check out to branch [main](https://github.com/FISCO-BCOS/asset-app-demo/tree/main).
 
