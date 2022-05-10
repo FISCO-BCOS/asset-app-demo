@@ -19,10 +19,10 @@ repositories {
 
 
 List logger = [
-	'org.slf4j:slf4j-log4j12:1.7.25'
+	'org.slf4j:slf4j-log4j12:1.7.32'
 ]
 
-def spring_version = "4.3.27.RELEASE"
+def spring_version = "5.3.17"
 List spring = [
 		"org.springframework:spring-core:$spring_version",
 		"org.springframework:spring-beans:$spring_version",
@@ -34,7 +34,7 @@ List spring = [
 dependencies {
     compile logger
     runtime logger
-    compile ("org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:2.7.1")
+    compile ("org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:2.9.0-SNAPSHOT")
 	compile spring
 }
 
