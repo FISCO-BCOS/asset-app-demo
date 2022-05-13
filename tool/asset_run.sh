@@ -37,5 +37,5 @@ function usage()
             ;;
     esac
 
-    java -Djdk.tls.namedGroups="secp256k1" -cp 'apps/*:conf/:lib/*' org.fisco.bcos.asset.client.AssetClient $@
+    java -Djdk.tls.namedGroups="SM2,secp256k1,x25519,secp256r1,secp384r1,secp521r1" -cp 'apps/*:conf/:lib/*' org.fisco.bcos.asset.client.AssetClient $@
 
