@@ -109,6 +109,7 @@ public class AssetClient {
 
             Asset asset = Asset.load(contractAddress, client, cryptoKeyPair);
             TransactionReceipt receipt = asset.register(assetAccount, amount);
+            logger.debug("receipt status: {}, log: {}", receipt.getStatus(), receipt.getLogEntries());
             List<Asset.RegisterEventEventResponse> registerEventEvents = asset.getRegisterEventEvents(receipt);
             if (!registerEventEvents.isEmpty()) {
                 if (registerEventEvents.get(0).ret_code.compareTo(BigInteger.ZERO) == 0) {
@@ -132,6 +133,7 @@ public class AssetClient {
             String contractAddress = loadAssetAddr();
             Asset asset = Asset.load(contractAddress, client, cryptoKeyPair);
             TransactionReceipt receipt = asset.transfer(fromAssetAccount, toAssetAccount, amount);
+            logger.debug("receipt status: {}, log: {}", receipt.getStatus(), receipt.getLogEntries());
             List<Asset.TransferEventEventResponse> transferEventEvents = asset.getTransferEventEvents(receipt);
             if (!transferEventEvents.isEmpty()) {
                 if (transferEventEvents.get(0).ret_code.compareTo(BigInteger.ZERO) == 0) {
