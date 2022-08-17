@@ -88,7 +88,7 @@ public class AssetClient {
         try {
             String contractAddress = loadAssetAddr();
             Asset asset = Asset.load(contractAddress, client, cryptoKeyPair);
-            Tuple2<Boolean, BigInteger> result = asset.getSelectOutput(asset.select(assetAccount));
+            Tuple2<Boolean, BigInteger> result = asset.select(assetAccount);
             if (result.getValue1()) {
                 System.out.printf(" asset account %s, value %s %n", assetAccount, result.getValue2());
             } else {
@@ -120,7 +120,19 @@ public class AssetClient {
                             " register asset account failed, ret code is %s %n", registerEventEvents.get(0).ret_code.toString());
                 }
             } else {
-                System.out.println(" event log not found, maybe transaction not exec, receipt status is: " + receipt.getStatus());
+                // liquid event will parse empty
+                if (receipt.isStatusOK()){
+                    Tuple1<BigInteger> output = asset.getRegisterOutput(receipt);
+                    if (output.getValue1().compareTo(BigInteger.ZERO) == 0) {
+                        System.out.printf(
+                                " register asset account success => asset: %s, value: %s %n", assetAccount, amount);
+                    } else {
+                        System.out.printf(
+                                " register asset account failed, ret code is %s %n", registerEventEvents.get(0).ret_code.toString());
+                    }
+                } else{
+                    System.out.println(" event log not found, maybe transaction not exec, receipt status is: " + receipt.getStatus());
+                }
             }
         } catch (Exception e) {
             logger.error(" registerAssetAccount exception, error message is {}", e.getMessage());
@@ -145,6 +157,20 @@ public class AssetClient {
                             " transfer asset account failed, ret code is %s %n", transferEventEvents.get(0).ret_code.toString());
                 }
             } else {
+                // liquid event will parse empty
+                if (receipt.isStatusOK()){
+                    Tuple1<BigInteger> output = asset.getTransferOutput(receipt);
+                    if (output.getValue1().compareTo(BigInteger.ZERO) == 0) {
+                        System.out.printf(
+                                " transfer success => from_asset: %s, to_asset: %s, amount: %s %n",
+                                fromAssetAccount, toAssetAccount, amount);
+                    } else {
+                        System.out.printf(
+                                " transfer asset account failed, ret code is %s %n", transferEventEvents.get(0).ret_code.toString());
+                    }
+                } else{
+                    System.out.println(" event log not found, maybe transaction not exec, receipt status is: " + receipt.getStatus());
+                }
                 System.out.println(" event log not found, maybe transaction not exec, status is: " + receipt.getStatus());
             }
         } catch (Exception e) {
