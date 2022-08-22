@@ -171,7 +171,6 @@ public class AssetClient {
                 } else {
                     System.out.println(" event log not found, maybe transaction not exec, receipt status is: " + receipt.getStatus());
                 }
-                System.out.println(" event log not found, maybe transaction not exec, status is: " + receipt.getStatus());
             }
         } catch (Exception e) {
 
