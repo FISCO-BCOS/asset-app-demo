@@ -121,21 +121,21 @@ public class AssetClient {
                 }
             } else {
                 // liquid event will parse empty
-                if (receipt.isStatusOK()){
+                if (receipt.isStatusOK()) {
                     Tuple1<BigInteger> output = asset.getRegisterOutput(receipt);
                     if (output.getValue1().compareTo(BigInteger.ZERO) == 0) {
                         System.out.printf(
                                 " register asset account success => asset: %s, value: %s %n", assetAccount, amount);
                     } else {
                         System.out.printf(
-                                " register asset account failed, ret code is %s %n", registerEventEvents.get(0).ret_code.toString());
+                                " register asset account failed, ret code is %s %n", output.getValue1());
                     }
-                } else{
+                } else {
                     System.out.println(" event log not found, maybe transaction not exec, receipt status is: " + receipt.getStatus());
                 }
             }
         } catch (Exception e) {
-            logger.error(" registerAssetAccount exception, error message is {}", e.getMessage());
+            logger.error(" registerAssetAccount exception, error: ", e);
             System.out.println(" register asset account failed, error message is " + e.getMessage());
         }
     }
@@ -158,7 +158,7 @@ public class AssetClient {
                 }
             } else {
                 // liquid event will parse empty
-                if (receipt.isStatusOK()){
+                if (receipt.isStatusOK()) {
                     Tuple1<BigInteger> output = asset.getTransferOutput(receipt);
                     if (output.getValue1().compareTo(BigInteger.ZERO) == 0) {
                         System.out.printf(
@@ -166,17 +166,17 @@ public class AssetClient {
                                 fromAssetAccount, toAssetAccount, amount);
                     } else {
                         System.out.printf(
-                                " transfer asset account failed, ret code is %s %n", transferEventEvents.get(0).ret_code.toString());
+                                " transfer asset account failed, ret code is %s %n", output.getValue1());
                     }
-                } else{
+                } else {
                     System.out.println(" event log not found, maybe transaction not exec, receipt status is: " + receipt.getStatus());
                 }
                 System.out.println(" event log not found, maybe transaction not exec, status is: " + receipt.getStatus());
             }
         } catch (Exception e) {
 
-            logger.error(" registerAssetAccount exception, error message is {}", e.getMessage());
-            System.out.println(" register asset account failed, error message is " + e.getMessage());
+            logger.error(" transfer AssetAccount exception, error: ", e);
+            System.out.println(" transfer asset account failed, error message is " + e.getMessage());
         }
     }
 
